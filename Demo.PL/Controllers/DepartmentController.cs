@@ -1,5 +1,7 @@
 ﻿using Demo.BLL.DTO;
 using Demo.BLL.Services;
+using Demo.DAL.Models;
+using Demo.PL.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting;
@@ -87,17 +89,54 @@ namespace Demo.PL.Controllers
             if (!id.HasValue) { return BadRequest(); }
             var department = _departmentService.GetDepartmentById(id.Value);
             if (department is null) return NotFound();
+            var departmentViewModel = new DepartmentEditViewModel() { 
+            Name=department.Name,
+            Code=department.Code,
+            Description= department.Description,
+            DateOfCreation=department.CreatedOn
+            
+            };
 
-            return View(department);
+            return View(departmentViewModel);
         }
+        [ValidateAntiForgeryToken]
         [HttpPost]
-        public IActionResult Edit(int? id)
+        public IActionResult Edit([FromRoute]int? id,DepartmentEditViewModel viewModel)
         {
-            if (!id.HasValue) { return BadRequest(); }
-            var department = _departmentService.GetDepartmentById(id.Value);
-            if (department is null) return NotFound();
+            if (ModelState.IsValid) { return View(viewModel); }
+            try
+            {
+                var updatedDepartment = new UpdatedDepartmentDto()
+                {
+                    Id=id.Value,
+                    Name = viewModel.Name,
+                    Code = viewModel.Code,
+                    Description = viewModel.Description,
+                    DateOfCreation = viewModel.DateOfCreation
 
-            return View(department);
+                };
+                int result = _departmentService.UpdateDepartment(updatedDepartment);
+                if (result > 0)
+                    return RedirectToAction(nameof(Index));
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Departmentbcan't be created !!");
+                }
+            }
+            catch (Exception ex)
+            {
+
+                if (_environment.IsDevelopment())
+                {
+                    ModelState.AddModelError(string.Empty, ex.Message);
+                
+                }
+                else
+                {
+                    _logger.LogError(ex.Message);
+                }
+            }
+            return View(viewModel);
         }
         public IActionResult Delete()
         {
