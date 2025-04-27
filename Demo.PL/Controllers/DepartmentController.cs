@@ -109,8 +109,9 @@ namespace Demo.PL.Controllers
                 var updatedDepartment = new UpdatedDepartmentDto()
                 {
                     Id=id.Value,
-                    Name = viewModel.Name,
                     Code = viewModel.Code,
+                    Name = viewModel.Name,
+
                     Description = viewModel.Description,
                     DateOfCreation = viewModel.DateOfCreation
 
