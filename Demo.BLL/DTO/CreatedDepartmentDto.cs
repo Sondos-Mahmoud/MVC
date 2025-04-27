@@ -9,7 +9,7 @@ namespace Demo.BLL.DTO
 {
     public class CreatedDepartmentDto
     {
-        [Required ]
+        
         public string Name { get; set; } = null;
         public string Code { get; set; } = null;
         public DateOnly DateOfCreation { get; set; }
