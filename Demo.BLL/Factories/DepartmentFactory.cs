@@ -1,10 +1,5 @@
-﻿using Demo.BLL.DTO;
-using Demo.DAL.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Demo.BLL.DTO.DepartmentDtos;
+using Demo.DAL.Models.DepartmentModel;
 
 namespace Demo.BLL.Factories
 {

@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Demo.BLL.DTO
+namespace Demo.BLL.DTO.DepartmentDtos
 {
     public class CreatedDepartmentDto
     {
-        [Required ]
+        [Required]
         public string Name { get; set; } = null;
         public string Code { get; set; } = null;
         public DateOnly DateOfCreation { get; set; }
