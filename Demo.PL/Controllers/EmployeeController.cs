@@ -14,6 +14,7 @@ namespace Demo.PL.Controllers
     {
         public IActionResult Index()
         {
+            TempData.Keep();
             var Emloyees = _employeeServices.GetAllEmployee();
             return View(Emloyees);
         }
@@ -43,12 +44,15 @@ namespace Demo.PL.Controllers
                     int result = _employeeServices.CreateEmployee(CreatedEmployee);
                     if (result > 0)
                     {
+                        TempData["Message"] = "Employee Created Succesfly ";
                         return RedirectToAction(nameof(Index));
                     }
                     else
                     {
+                        TempData["Message"] = "Employee Creatio failed ";
+
                         ModelState.AddModelError(string.Empty, "Department can't be created");
-                        return View(employeeDto);
+                        return RedirectToAction(nameof(Index));
                     }
 
                 }
