@@ -1,5 +1,5 @@
-﻿using Demo.DAL.Models.DepartmentModel;
-using Demo.DAL.Models.EmployeeModel;
+﻿using Demo.DAL.Models.EmployeeModel;
+using Demo.DAL.Models.DepartmentModel;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -17,7 +17,8 @@ namespace Demo.DAL.Data.Configrations
             builder.Property(D => D.Id).UseIdentityColumn(10, 10);
             builder.Property(D => D.Name).HasColumnType("varchar(20)");
             builder.Property(D => D.Code).HasColumnType("varchar(20)");
-            //builder.HasMany(D => D.Employees).WithOne(E => E.Department).HasForeignKey(E => E.DepartmentId).OnDelete(DeleteBehavior.Cascade);
+            //builder.HasMany(D => D.Employees).WithOne(E => E.Department).HasForeignKey(E => E.DepartmentId);
+
             base.Configure(builder);
         }
     }

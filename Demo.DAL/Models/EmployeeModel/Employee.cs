@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Demo.DAL.Models.EmployeeModel
 {
-   public class Employee:BaseEntity 
+    public class Employee : BaseEntity
     {
         public string Name { get; set; }
         public int Age { get; set; }
@@ -21,10 +21,8 @@ namespace Demo.DAL.Models.EmployeeModel
         public DateTime HiringDate { get; set; }
         public EmployeeType EmployeeType { get; set; }
 
-        [ForeignKey ("Department")]
-        public int? DepartmentId { get; set; }
+        public int DepartmentId { get; set; }
         public Department Department { get; set; }
-
 
 
 
