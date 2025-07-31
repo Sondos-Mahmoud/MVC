@@ -22,9 +22,14 @@ namespace Demo.DAL.Data
         //}
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            ;
             modelBuilder.ApplyConfiguration<Department>(new DepartmentConfigrations());
         }
        public DbSet<Department> Departments { get; set; }
         public DbSet<Employee> Employees { get; set; }
+
+
+
     }
 }

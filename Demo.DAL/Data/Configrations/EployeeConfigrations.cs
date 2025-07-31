@@ -19,6 +19,7 @@ namespace Demo.DAL.Data.Configrations
             builder.Property(E => E.Gender).HasConversion((empGender) => empGender.ToString(),
                                            ( ReturnedEmpGender)=>(Gender)Enum.Parse(typeof(Gender), ReturnedEmpGender));
 
+
             builder.Property(E => E.EmployeeType).HasConversion((empType) => empType.ToString(),
                                (ReturnedEmpType) => (EmployeeType)Enum.Parse(typeof(Gender), ReturnedEmpType));
 
